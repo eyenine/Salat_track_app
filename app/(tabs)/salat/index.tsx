@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import {
   View, Text, ScrollView, TouchableOpacity,
   StyleSheet, RefreshControl, Alert
@@ -202,6 +202,58 @@ export default function HomeScreen() {
               </View>
             </View>
           </View>
+        </View>
+
+        {/* Salat Tools Section */}
+        <Text style={styles.sectionTitle}>Salat Tools</Text>
+        <View style={styles.toolsGrid}>
+          <TouchableOpacity
+            style={[styles.toolCard, SHADOWS.card]}
+            onPress={() => router.push('/(tabs)/salat/tracker' as any)}
+            activeOpacity={0.7}
+          >
+            <View style={[styles.toolIconCircle, { backgroundColor: 'rgba(16, 185, 129, 0.08)' }]}>
+              <Ionicons name="calendar-outline" size={20} color={COLORS.primary} />
+            </View>
+            <Text style={styles.toolTitle}>Daily Log</Text>
+            <Text style={styles.toolDesc}>Track past prayers</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={[styles.toolCard, SHADOWS.card]}
+            onPress={() => router.push('/(tabs)/salat/dashboard' as any)}
+            activeOpacity={0.7}
+          >
+            <View style={[styles.toolIconCircle, { backgroundColor: 'rgba(245, 158, 11, 0.08)' }]}>
+              <Ionicons name="bar-chart-outline" size={20} color={COLORS.gold} />
+            </View>
+            <Text style={styles.toolTitle}>Stats & Logs</Text>
+            <Text style={styles.toolDesc}>View tracking history</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={[styles.toolCard, SHADOWS.card]}
+            onPress={() => router.push('/(tabs)/salat/qaza' as any)}
+            activeOpacity={0.7}
+          >
+            <View style={[styles.toolIconCircle, { backgroundColor: 'rgba(244, 63, 94, 0.08)' }]}>
+              <Ionicons name="list-outline" size={20} color={COLORS.STATUS.MISSED} />
+            </View>
+            <Text style={styles.toolTitle}>Qaza Planner</Text>
+            <Text style={styles.toolDesc}>Manage missed prayers</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={[styles.toolCard, SHADOWS.card]}
+            onPress={() => router.push('/(tabs)/salat/settings' as any)}
+            activeOpacity={0.7}
+          >
+            <View style={[styles.toolIconCircle, { backgroundColor: 'rgba(255, 255, 255, 0.06)' }]}>
+              <Ionicons name="settings-outline" size={20} color={COLORS.textSoft} />
+            </View>
+            <Text style={styles.toolTitle}>Settings</Text>
+            <Text style={styles.toolDesc}>Adhan & locations</Text>
+          </TouchableOpacity>
         </View>
 
         {/* Prayer Times Section */}
@@ -591,6 +643,43 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     borderWidth: 1,
   },
+  toolsGrid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    paddingHorizontal: 12,
+    marginBottom: 16,
+  },
+  toolCard: {
+    width: '45%',
+    backgroundColor: COLORS.card,
+    borderRadius: 18,
+    padding: 14,
+    marginHorizontal: '2.5%',
+    marginBottom: 10,
+    borderWidth: 1,
+    borderColor: COLORS.border,
+    alignItems: 'flex-start',
+  },
+  toolIconCircle: {
+    width: 38,
+    height: 38,
+    borderRadius: 12,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 8,
+  },
+  toolTitle: {
+    color: COLORS.text,
+    fontSize: 13,
+    fontWeight: '700',
+  },
+  toolDesc: {
+    color: COLORS.textMuted,
+    fontSize: 10,
+    marginTop: 2,
+    fontWeight: '500',
+  },
 });
+
 
 
