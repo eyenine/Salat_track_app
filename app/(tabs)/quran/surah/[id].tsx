@@ -21,6 +21,13 @@ export default function SurahReaderScreen() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+  const flatListRef = useRef<FlatList>(null);
+  const versesRef = useRef<Ayah[]>([]);
+
+  useEffect(() => {
+    versesRef.current = verses;
+  }, [verses]);
+
   // Audio State
   const [sound, setSound] = useState<Audio.Sound | null>(null);
   const [playingAyahId, setPlayingAyahId] = useState<number | null>(null);
@@ -77,6 +84,21 @@ export default function SurahReaderScreen() {
     }
   };
 
+  const scrollToIndex = (ayahId: number) => {
+    const idx = versesRef.current.findIndex(v => v.id === ayahId);
+    if (idx !== -1 && flatListRef.current) {
+      try {
+        flatListRef.current.scrollToIndex({
+          index: idx,
+          animated: true,
+          viewPosition: 0.3
+        });
+      } catch (err) {
+        // ignore
+      }
+    }
+  };
+
   const playAudio = async (ayah: Ayah) => {
     try {
       setIsAudioLoading(true);
@@ -91,11 +113,21 @@ export default function SurahReaderScreen() {
 
       setSound(newSound);
       setPlayingAyahId(ayah.id);
+      scrollToIndex(ayah.id);
 
       newSound.setOnPlaybackStatusUpdate((status) => {
         if (status.isLoaded && status.didJustFinish) {
           setPlayingAyahId(null);
-          // Optional: Auto-play next ayah logic could go here
+          
+          const currentVerses = versesRef.current;
+          const currentIndex = currentVerses.findIndex(v => v.id === ayah.id);
+          if (currentIndex !== -1 && currentIndex < currentVerses.length - 1) {
+            const nextAyah = currentVerses[currentIndex + 1];
+            // Play next ayah with a slight delay
+            setTimeout(() => {
+              playAudio(nextAyah);
+            }, 800);
+          }
         }
       });
     } catch (err) {
@@ -242,11 +274,18 @@ export default function SurahReaderScreen() {
 
         {/* Verses List */}
         <FlatList
+          ref={flatListRef}
           data={verses}
           renderItem={renderAyah}
           keyExtractor={(item) => `${item.surahId}-${item.ayahNumber}`}
           contentContainerStyle={styles.versesList}
           showsVerticalScrollIndicator={false}
+          onScrollToIndexFailed={(info) => {
+            flatListRef.current?.scrollToOffset({
+              offset: info.index * info.averageItemLength,
+              animated: true,
+            });
+          }}
         />
       </View>
     </>
