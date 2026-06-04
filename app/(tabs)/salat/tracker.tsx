@@ -1,17 +1,17 @@
-import React, { useEffect, useState, useCallback } from 'react';
+﻿import React, { useEffect, useState, useCallback } from 'react';
 import {
   View, Text, ScrollView, TouchableOpacity,
   StyleSheet, Alert
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { getDailyLog, markPrayer } from '../src/services/trackingService';
-import { useStore } from '../src/store/useStore';
+import { getDailyLog, markPrayer } from '../../../src/services/trackingService';
+import { useStore } from '../../../src/store/useStore';
 import {
   PrayerCode, PrayerStatus,
   STATUS_LABELS, STATUS_EMOJIS, PRAYER_ORDER, PRAYER_NAMES
-} from '../src/types/prayer';
-import { COLORS, SHADOWS } from '../src/constants/theme';
-import BottomNavBar from '../src/components/BottomNavBar';
+} from '../../../src/types/prayer';
+import { COLORS, SHADOWS } from '../../../src/constants/theme';
+// BottomNavBar removed - using tab navigator
 
 const STATUSES: PrayerStatus[] = ['ON_TIME', 'LATE', 'QAZA', 'MISSED', 'EXCUSED'];
 
@@ -178,7 +178,7 @@ export default function TrackerScreen() {
       </ScrollView>
 
       {/* Floating Bottom Navigation */}
-      <BottomNavBar activeRoute="tracker" />
+      {/* Tab bar handles navigation */}
     </View>
   );
 }
@@ -352,3 +352,5 @@ const styles = StyleSheet.create({
     fontWeight: '500',
   },
 });
+
+

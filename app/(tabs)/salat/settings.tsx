@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from 'react';
+﻿import React, { useEffect, useState } from 'react';
 import {
   View, Text, ScrollView, StyleSheet, TouchableOpacity,
   TextInput, Alert, Switch, ActivityIndicator
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import * as Location from 'expo-location';
-import { getAllSettings, setSetting } from '../src/services/trackingService';
-import { useStore } from '../src/store/useStore';
-import { schedulePrayerNotifications } from '../src/services/notificationService';
-import { COLORS, SHADOWS } from '../src/constants/theme';
-import BottomNavBar from '../src/components/BottomNavBar';
+import { getAllSettings, setSetting } from '../../../src/services/trackingService';
+import { useStore } from '../../../src/store/useStore';
+import { schedulePrayerNotifications } from '../../../src/services/notificationService';
+import { COLORS, SHADOWS } from '../../../src/constants/theme';
+// BottomNavBar removed - using tab navigator
 
 const CALCULATION_METHODS = [
   { key: 'MuslimWorldLeague', label: 'Muslim World League' },
@@ -127,9 +127,9 @@ export default function SettingsScreen() {
     try {
       // Recalculating times and rescheduling reminders
       await schedulePrayerNotifications();
-      Alert.alert('✅ Settings Saved', 'Location updated. Prayer times and reminders have been recalculated.');
+      Alert.alert('âœ… Settings Saved', 'Location updated. Prayer times and reminders have been recalculated.');
     } catch (e) {
-      Alert.alert('✅ Settings Saved', 'Location saved (notification reschedule pending).');
+      Alert.alert('âœ… Settings Saved', 'Location saved (notification reschedule pending).');
     } finally {
       setSavingLocation(false);
     }
@@ -318,13 +318,13 @@ export default function SettingsScreen() {
           </View>
           <Text style={styles.infoTitle}>Salat Tracker App</Text>
           <Text style={styles.infoText}>Version 1.0.0</Text>
-          <Text style={styles.infoTextSub}>Offline-First • No Tracking • No Cloud Account Needed</Text>
+          <Text style={styles.infoTextSub}>Offline-First â€¢ No Tracking â€¢ No Cloud Account Needed</Text>
           <Text style={styles.infoTextSub}>Prayer calculations powered by Adhan.js library</Text>
         </View>
       </ScrollView>
 
       {/* Floating Bottom Navigation */}
-      <BottomNavBar activeRoute="settings" />
+      {/* Tab bar handles navigation */}
     </View>
   );
 }
@@ -571,3 +571,5 @@ const styles = StyleSheet.create({
     fontWeight: '500',
   },
 });
+
+

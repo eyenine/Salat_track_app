@@ -5,7 +5,7 @@ import { View, Text, ActivityIndicator, StatusBar } from 'react-native';
 import { requestNotificationPermissions, schedulePrayerNotifications } from '../src/services/notificationService';
 import { COLORS } from '../src/constants/theme';
 
-export default function Layout() {
+export default function RootLayout() {
   const [dbReady, setDbReady] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -39,7 +39,7 @@ export default function Layout() {
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: COLORS.bg }}>
         <ActivityIndicator size="large" color={COLORS.gold} />
         <Text style={{ marginTop: 16, color: COLORS.textSoft, fontSize: 16, fontWeight: '600' }}>
-          Loading Salat Tracker...
+          Loading Islamic Companion...
         </Text>
       </View>
     );
@@ -48,19 +48,9 @@ export default function Layout() {
   return (
     <>
       <StatusBar barStyle="light-content" backgroundColor={COLORS.bg} />
-      <Stack
-        screenOptions={{
-          headerStyle: { backgroundColor: COLORS.bg },
-          headerTintColor: COLORS.gold,
-          headerTitleStyle: { fontWeight: '700' },
-          headerShadowVisible: false,
-        }}
-      >
-        <Stack.Screen name="index" options={{ title: '🕌 Salat Tracker' }} />
-        <Stack.Screen name="tracker" options={{ title: 'Daily Log' }} />
-        <Stack.Screen name="dashboard" options={{ title: 'Dashboard' }} />
-        <Stack.Screen name="qaza" options={{ title: 'Qaza Planner' }} />
-        <Stack.Screen name="settings" options={{ title: 'Settings' }} />
+      <Stack screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack.Screen name="+not-found" options={{ title: 'Not Found' }} />
       </Stack>
     </>
   );

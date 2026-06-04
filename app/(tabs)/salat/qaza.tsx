@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react';
+﻿import React, { useEffect, useState } from 'react';
 import {
   View, Text, ScrollView, StyleSheet, TouchableOpacity
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { getDB } from '../src/db/database';
-import { PRAYER_NAMES, PrayerCode } from '../src/types/prayer';
-import { COLORS, SHADOWS } from '../src/constants/theme';
-import BottomNavBar from '../src/components/BottomNavBar';
+import { getDB } from '../../../src/db/database';
+import { PRAYER_NAMES, PrayerCode } from '../../../src/types/prayer';
+import { COLORS, SHADOWS } from '../../../src/constants/theme';
+// BottomNavBar removed - using tab navigator
 
 interface QazaEntry {
   prayer_code: string;
@@ -195,7 +195,7 @@ export default function QazaScreen() {
       </ScrollView>
 
       {/* Floating Sticky Tab Bar */}
-      <BottomNavBar activeRoute="qaza" />
+      {/* Tab bar handles navigation */}
     </View>
   );
 }
@@ -440,3 +440,5 @@ const styles = StyleSheet.create({
     fontWeight: '500',
   },
 });
+
+

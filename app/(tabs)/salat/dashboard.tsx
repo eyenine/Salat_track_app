@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
+﻿import React, { useEffect, useState } from 'react';
 import { View, Text, ScrollView, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { getMonthlyStats, getStreak, getDailyLog } from '../src/services/trackingService';
-import { PRAYER_NAMES, PRAYER_ORDER, STATUS_LABELS, PrayerCode, PrayerStatus } from '../src/types/prayer';
-import { COLORS, SHADOWS } from '../src/constants/theme';
-import BottomNavBar from '../src/components/BottomNavBar';
+import { getMonthlyStats, getStreak, getDailyLog } from '../../../src/services/trackingService';
+import { PRAYER_NAMES, PRAYER_ORDER, STATUS_LABELS, PrayerCode, PrayerStatus } from '../../../src/types/prayer';
+import { COLORS, SHADOWS } from '../../../src/constants/theme';
+// BottomNavBar removed - using tab navigator
 
 interface WeeklyChartItem {
   dayLabel: string;
@@ -164,7 +164,7 @@ export default function DashboardScreen() {
         </View>
 
         {/* Monthly breakdown list */}
-        <Text style={styles.sectionTitle}>Monthly Breakdown — {monthName}</Text>
+        <Text style={styles.sectionTitle}>Monthly Breakdown â€” {monthName}</Text>
         {PRAYER_ORDER.map(code => {
           const s = getPrayerStat(code);
           const total = s.onTime + s.late + s.qaza + s.missed;
@@ -183,16 +183,16 @@ export default function DashboardScreen() {
               
               <View style={styles.breakdownStats}>
                 <Text style={[styles.breakdownMiniText, { color: COLORS.STATUS.ON_TIME }]}>
-                  ● {s.onTime} On Time
+                  â— {s.onTime} On Time
                 </Text>
                 <Text style={[styles.breakdownMiniText, { color: COLORS.STATUS.LATE }]}>
-                  ● {s.late} Late
+                  â— {s.late} Late
                 </Text>
                 <Text style={[styles.breakdownMiniText, { color: COLORS.STATUS.QAZA }]}>
-                  ● {s.qaza} Qaza
+                  â— {s.qaza} Qaza
                 </Text>
                 <Text style={[styles.breakdownMiniText, { color: COLORS.STATUS.MISSED }]}>
-                  ● {s.missed} Missed
+                  â— {s.missed} Missed
                 </Text>
               </View>
             </View>
@@ -223,7 +223,7 @@ export default function DashboardScreen() {
       </ScrollView>
 
       {/* Floating Bottom Navigation */}
-      <BottomNavBar activeRoute="dashboard" />
+      {/* Tab bar handles navigation */}
     </View>
   );
 }
@@ -456,3 +456,5 @@ const styles = StyleSheet.create({
     fontWeight: '500',
   },
 });
+
+
