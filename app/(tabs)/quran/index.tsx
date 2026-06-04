@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   View, Text, FlatList, TouchableOpacity,
   StyleSheet, ActivityIndicator, TextInput
@@ -48,7 +48,7 @@ export default function QuranSurahListScreen() {
       <View style={styles.surahInfo}>
         <Text style={styles.surahEnglishName}>{item.englishName}</Text>
         <Text style={styles.surahMeta}>
-          {item.revelationType === 'meccan' ? 'Meccan' : 'Medinan'} â€¢ {item.ayahCount} Ayahs
+          {item.revelationType === 'meccan' ? 'Meccan' : 'Medinan'} • {item.ayahCount} Ayahs
         </Text>
       </View>
       <View style={styles.surahArabicBox}>

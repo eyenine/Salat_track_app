@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import {
   View, Text, FlatList, TouchableOpacity,
   StyleSheet
@@ -10,12 +10,12 @@ import { useHadithStore } from '../../../src/store/hadithStore';
 import { HadithCollection } from '../../../src/types/hadith';
 
 const COLLECTION_ICONS: Record<string, string> = {
-  bukhari: 'ðŸ“—',
-  muslim: 'ðŸ“˜',
-  abudawud: 'ðŸ“™',
-  tirmidhi: 'ðŸ“•',
-  nasai: 'ðŸ““',
-  ibnmajah: 'ðŸ“”',
+  bukhari: '📗',
+  muslim: '📘',
+  abudawud: '📙',
+  tirmidhi: '📕',
+  nasai: '📓',
+  ibnmajah: '📔',
 };
 
 export default function HadithCollectionListScreen() {
@@ -29,7 +29,7 @@ export default function HadithCollectionListScreen() {
     >
       <View style={styles.cardLeft}>
         <View style={styles.iconBox}>
-          <Text style={styles.iconEmoji}>{COLLECTION_ICONS[item.name] || 'ðŸ“š'}</Text>
+          <Text style={styles.iconEmoji}>{COLLECTION_ICONS[item.name] || '📚'}</Text>
         </View>
         <View style={styles.cardInfo}>
           <Text style={styles.collectionTitle}>{item.title}</Text>
@@ -51,7 +51,7 @@ export default function HadithCollectionListScreen() {
     <View style={styles.container}>
       {/* Header Info */}
       <View style={[styles.headerCard, SHADOWS.emerald]}>
-        <Text style={styles.headerArabic}>Ø§Ù„ÙƒØªØ¨ Ø§Ù„Ø³ØªØ©</Text>
+        <Text style={styles.headerArabic}>الكتب الستة</Text>
         <Text style={styles.headerTitle}>Kutub al-Sittah</Text>
         <Text style={styles.headerSubtitle}>
           The six most authentic hadith collections with English and Bengali translations
@@ -171,4 +171,3 @@ const styles = StyleSheet.create({
     letterSpacing: 0.5,
   },
 });
-
